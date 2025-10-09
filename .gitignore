@@ -208,3 +208,7 @@ __marimo__/
 
 teste.py
 *.parquet
+
+data/
+*.zip
+

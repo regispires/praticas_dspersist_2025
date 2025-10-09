@@ -8,7 +8,7 @@ df = pd.DataFrame({
 	"valor": [f"texto_{i}" for i in range(N)]
 })
 # Compressões a testar
-compressions = ["snappy", "gzip", "zstd", "lz4", None]
+compressions = ["snappy", "gzip", "zstd", "lz4", "brotli", None]
 tempos = []
 for comp in compressions:
 	fname = f"dados_{comp or 'none'}.parquet"
