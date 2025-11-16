@@ -1,10 +1,8 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
-from models import Base, Aluno
+from sqlmodel import Session, select
+from models import Aluno
 from database import engine
 
 with Session(engine) as session:
-	# Inserir novos registros
 	try:
 		session.add(Aluno(nome='Maria', apelido='Mari'))
 		session.add(Aluno(nome='João'))
@@ -13,7 +11,6 @@ with Session(engine) as session:
 		session.rollback()
 		print(f'Erro: {e}')
 
-	# Consultar registros
-	alunos = session.query(Aluno).all()
+	alunos = session.exec(select(Aluno)).all()
 	for aluno in alunos:
 		print(aluno)

@@ -14,7 +14,7 @@ with engine.begin() as conn:
     conn.execute(
         insert(pessoas),
         [
-            {"nome": "João", "dt_nasc": date(1995, 4, 12), "fone": "88999998888"},
+            {"nome": "João Pedro", "dt_nasc": date(1995, 4, 12), "fone": "88999998888"},
             {"nome": "Maria", "dt_nasc": date(1990, 8, 23), "fone": "85912345678"},
             {"nome": "José", "dt_nasc": date(1988, 1, 3), "fone": "85987654321"},
         ],

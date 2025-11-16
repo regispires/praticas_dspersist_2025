@@ -1,5 +1,5 @@
 [project]
-name = "sqlalchemy-orm"
+name = "sqlmodel01"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,5 +7,5 @@ requires-python = ">=3.12"
 dependencies = [
     "alembic>=1.17.1",
     "python-dotenv>=1.2.1",
-    "sqlalchemy>=2.0.44",
+    "sqlmodel>=0.0.27",
 ]

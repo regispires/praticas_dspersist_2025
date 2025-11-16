@@ -1,16 +1,14 @@
-from sqlalchemy import create_engine
-from models import Base
-import os
-import logging
+from sqlmodel import create_engine, Session, SQLModel
 from dotenv import load_dotenv
+import logging
+import os
 
+# Carregar variáveis do arquivo .env
+load_dotenv()
+
+# Configurar o logger
 logging.basicConfig()
 logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 
-load_dotenv()
-
 # Configuração do banco de dados
 engine = create_engine(os.getenv("DATABASE_URL"))
-
-# Criar a(s) tabela(s) no banco de dados
-Base.metadata.create_all(engine)

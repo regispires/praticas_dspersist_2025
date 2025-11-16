@@ -1,11 +1,11 @@
 [project]
-name = "sqlalchemy-orm"
+name = "fastapi-sqlmodel"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "alembic>=1.17.1",
-    "python-dotenv>=1.2.1",
-    "sqlalchemy>=2.0.44",
+    "fastapi[standard]>=0.121.1",
+    "sqlmodel>=0.0.27",
 ]
