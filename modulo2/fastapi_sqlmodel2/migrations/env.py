@@ -10,14 +10,18 @@ from sqlmodel import SQLModel
 from dotenv import load_dotenv
 import os
 
-from models import Aluno
+from modelos.user import User
+from modelos.post import Post, PostTag
+from modelos.comment import Comment
+from modelos.tag import Tag
 
 load_dotenv()
-db_url = os.getenv("DATABASE_URL")
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
+
+db_url = os.getenv("DATABASE_URL")
 config.set_main_option("sqlalchemy.url", db_url)
 
 # Interpret the config file for Python logging.
@@ -28,7 +32,7 @@ if config.config_file_name is not None:
 # add your model's MetaData object here
 # for 'autogenerate' support
 # from myapp import mymodel
-# target_metadata = mymodel.Base.metadata
+# target_metadata = mymodel.Base.metadatac
 target_metadata = SQLModel.metadata
 
 # other values from the config, defined by the needs of env.py,
