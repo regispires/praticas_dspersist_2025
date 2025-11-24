@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlmodel import Session, select
-from sqlalchemy.orm import joinedload
+from sqlalchemy.orm import joinedload, selectinload
 from modelos.post import Post, PostTag, PostBaseWithUserCommentsTags
 from modelos.comment import Comment
 from modelos.tag import Tag
@@ -15,6 +15,7 @@ router = APIRouter(
 # Posts
 @router.post("/", response_model=Post)
 def create_post(post: Post, session: Session = Depends(get_session)):
+    print("Creating post:", post)
     session.add(post)
     session.commit()
     session.refresh(post)
@@ -24,7 +25,8 @@ def create_post(post: Post, session: Session = Depends(get_session)):
 def read_posts(offset: int = 0, limit: int = Query(default=10, le=100), 
                session: Session = Depends(get_session)):
     statement = (select(Post).offset(offset).limit(limit)
-                 .options(joinedload(Post.user), joinedload(Post.comments), 
+                 .options(joinedload(Post.user), 
+                          joinedload(Post.comments).joinedload(Comment.user),
                           joinedload(Post.tags)))
     return session.exec(statement).unique().all()
 

@@ -25,5 +25,3 @@ class PostBaseWithUserCommentsTags(PostBase):
     user: UserBase | None
     comments: list[CommentBaseWithUser] = None
     tags: list[Tag] = None
-
-PostBaseWithUserCommentsTags.model_rebuild()

@@ -1,8 +1,8 @@
-"""criar tabelas iniciais
+"""criar tabelas
 
-Revision ID: e10e36c16dad
+Revision ID: 69ed842d9ceb
 Revises: 
-Create Date: 2025-11-19 11:23:47.707714
+Create Date: 2025-11-24 10:28:20.794788
 
 """
 from typing import Sequence, Union
@@ -13,7 +13,7 @@ import sqlmodel
 
 
 # revision identifiers, used by Alembic.
-revision: str = 'e10e36c16dad'
+revision: str = '69ed842d9ceb'
 down_revision: Union[str, Sequence[str], None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
