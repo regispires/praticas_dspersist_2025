@@ -212,3 +212,5 @@ teste.py
 data/
 *.zip
 
+.vscode
+
