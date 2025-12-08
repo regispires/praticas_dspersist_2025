@@ -10,10 +10,7 @@ from sqlmodel import SQLModel
 from dotenv import load_dotenv
 import os
 
-from modelos.user import User
-from modelos.post import Post, PostTag
-from modelos.comment import Comment
-from modelos.tag import Tag
+import modelos
 
 load_dotenv()
 
