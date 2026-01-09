@@ -1,10 +1,11 @@
 [project]
-name = "mongodb-tmp"
+name = "mongodb-fastapi-beanie"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "beanie>=2.0.1",
+    "fastapi-pagination>=0.15.5",
     "fastapi[standard]>=0.128.0",
 ]

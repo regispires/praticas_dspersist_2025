@@ -1,8 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from beanie import PydanticObjectId
 from beanie.odm.fields import Link
-
-from modelos import Post, Post, Comment, CommentParam, User
+from fastapi_pagination import Page
+from fastapi_pagination.ext.beanie import apaginate
+from modelos import Post, PostCreate, Comment, CommentParam, User
 
 router = APIRouter(
     prefix="/posts",
@@ -10,11 +11,9 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=list[Post])
-async def get_all_posts() -> list[Post]:
-    # EAGER: traz user, comments e comment.user resolvidos
-    posts = await Post.find(fetch_links=True).to_list()
-    return posts
+@router.get("/", response_model=Page[Post])
+async def get_posts() -> Page[Post]:
+    return await apaginate(Post.find_all(fetch_links=True))
 
 
 @router.get("/{post_id}", response_model=Post)
@@ -27,7 +26,7 @@ async def get_post(post_id: PydanticObjectId) -> Post:
 
 
 @router.post("/", response_model=Post)
-async def create_post(post: Post) -> Post:
+async def create_post(post: PostCreate) -> Post:
     # Extrai o user_id do Link
     user_id = None
     if isinstance(post.user, Link):

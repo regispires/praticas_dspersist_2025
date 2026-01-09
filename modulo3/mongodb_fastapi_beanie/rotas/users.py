@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from beanie import PydanticObjectId
-
+from fastapi_pagination import Page
+from fastapi_pagination.ext.beanie import apaginate
 from modelos import User
 
 router = APIRouter(
@@ -9,10 +10,9 @@ router = APIRouter(
 )
 
 
-@router.get("/", response_model=list[User])
-async def get_all_users() -> list[User]:
-    users = await User.find_all().to_list()
-    return users
+@router.get("/", response_model=Page[User])
+async def get_users() -> Page[User]:
+    return await apaginate(User.find_all())
 
 
 @router.get("/{user_id}", response_model=User)
