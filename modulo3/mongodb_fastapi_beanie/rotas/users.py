@@ -12,7 +12,7 @@ router = APIRouter(
 
 @router.get("/", response_model=Page[User])
 async def get_users() -> Page[User]:
-    return await apaginate(User.find_all())
+    return await apaginate(User.find_all()) # equivalente a User.find({})
 
 
 @router.get("/{user_id}", response_model=User)
