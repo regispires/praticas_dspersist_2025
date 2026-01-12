@@ -12,4 +12,5 @@ collection.insert_one({"name": "João", "age": 30})
 
 # Buscar um documento
 result = collection.find_one({"name": "João"})
+print(type(result))
 print(result)

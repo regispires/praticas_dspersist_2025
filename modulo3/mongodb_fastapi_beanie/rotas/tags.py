@@ -12,7 +12,7 @@ router = APIRouter(
 
 @router.get("/", response_model=Page[str])
 async def get_tags(params: Params = Depends()) -> Page[str]:
-    """
+    """ 
     Retorna as tags distintas existentes nos posts.
     """
     tags = await Post.distinct("tags")  # Aguarda a lista de tags
