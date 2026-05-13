@@ -26,15 +26,15 @@ def read_posts(offset: int = 0, limit: int = Query(default=10, le=100),
                session: Session = Depends(get_session)):
     statement = (select(Post).offset(offset).limit(limit)
                  .options(joinedload(Post.user), 
-                          joinedload(Post.comments).joinedload(Comment.user),
-                          joinedload(Post.tags)))
+                          selectinload(Post.comments).joinedload(Comment.user),
+                          selectinload(Post.tags)))
     return session.exec(statement).unique().all()
 
 @router.get("/{post_id}", response_model=PostBaseWithUserCommentsTags)
 def read_post(post_id: int, session: Session = Depends(get_session)):
     statement = (select(Post).where(Post.id == post_id)
-                 .options(joinedload(Post.user), joinedload(Post.comments), 
-                          joinedload(Post.tags)))
+                 .options(joinedload(Post.user), selectinload(Post.comments).joinedload(Comment.user),
+                          selectinload(Post.tags)))
     post = session.exec(statement).first()
     if not post:
         raise HTTPException(status_code=404, detail="Post not found")
